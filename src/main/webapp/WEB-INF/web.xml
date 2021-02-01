@@ -82,7 +82,25 @@
 		<servlet-name>human</servlet-name>
 		<url-pattern>*.hm</url-pattern>
 		<!--.hm 라는 패턴으로 요청으로 들어오면 human라는 서블릿이 처리합니다. -->
-		<!--human은 dispatcherservlet이 처리해주고 그 설정파일은 hello-context.xml  -->
+		<!--human은 dispatcherservlet이 처리해주고 그 설정파일은 human-context.xml  -->
 	</servlet-mapping>
 
+
+<!-- member session  -->
+	<servlet>
+		<servlet-name>member</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/member-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>member</servlet-name>
+		<url-pattern>*.me</url-pattern>
+		<!--.me 라는 패턴으로 요청으로 들어오면 member라는 서블릿이 처리합니다. -->
+		<!--member은 dispatcherservlet이 처리해주고 그 설정파일은 member-context.xml  -->
+	</servlet-mapping>
 </web-app>
