@@ -1,0 +1,10 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 인터페이스를 사용하는 경우 네임스페이스는 반드시 패키지경로 + 인터페이스이름 으로 작성해야 합니다. -->
+<mapper namespace="NsAlbum">	
+	<select id="getTotalCount">
+		select count(*) from albums
+	</select>
+	
+</mapper>

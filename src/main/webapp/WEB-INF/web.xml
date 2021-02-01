@@ -6,7 +6,7 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/applicationContext.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -103,4 +103,23 @@
 		<!--.me 라는 패턴으로 요청으로 들어오면 member라는 서블릿이 처리합니다. -->
 		<!--member은 dispatcherservlet이 처리해주고 그 설정파일은 member-context.xml  -->
 	</servlet-mapping>
+	
+	<!-- album session  -->
+	<servlet>
+		<servlet-name>album</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/album-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>album</servlet-name>
+		<url-pattern>*.al</url-pattern>
+		<!--.al 라는 패턴으로 요청으로 들어오면 album라는 서블릿이 처리합니다. -->
+		<!--album은 dispatcherservlet이 처리해주고 그 설정파일은 album-context.xml  -->
+	</servlet-mapping>
+	
 </web-app>

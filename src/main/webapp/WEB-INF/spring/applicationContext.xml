@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--DBCP(커넥션 풀링)를 사용한 DataSource 설정하기 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="gomdori"/>
+		<property name="password" value="oracle"/>
+	</bean>
+	<!--마이바티스 설정  -->
+	<!--dataSource 객체와 맵 설정파일의 경로는 setterInjection을 이용해 설정  -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/album/mybatis/SqlMapConfig.xml"/>
+	</bean>
+	
+	<!--SqlSessionTemplate 객체는 setterInjection을 지원하지 않음  -->
+	<!--  따라서 생성자 injection --> 
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+</beans>
